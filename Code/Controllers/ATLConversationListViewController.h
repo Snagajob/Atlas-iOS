@@ -288,7 +288,7 @@ NS_ASSUME_NONNULL_BEGIN
  @abstract Updates the predicate used to perform searches.
  @param predicate The predicate to use; `nil` is permitted.
  */
-- (void)updatePredicate:(nullable LYRPredicate *)predicate;
+- (void)updatePredicate:(nullable LYRPredicate *)predicate NS_SWIFT_NAME(update(predicate:));
 
 @end
 NS_ASSUME_NONNULL_END
