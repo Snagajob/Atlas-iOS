@@ -79,6 +79,28 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     _imageView.clipsToBounds = YES;
     [self addSubview:_imageView];
     
+    //Left ImageView
+    _listImageViewLeft = [[UIImageView alloc] init];
+    _listImageViewLeft = ATLLightGrayColor();
+    _listImageViewLeft.clipsToBounds = YES;
+    [self addSubview:_listImageViewLeft]
+    
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:_listImageViewLeft attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0];
+    
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:_listImageViewLeft attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    
+    [self.view addConstraints:@[left, top]];
+    
+    //Right ImageView
+    _listImageViewRight = [[UIImageView alloc] init];
+    _listImageViewRight = ATLLightGrayColor();
+    _listImageViewRight.clipsToBounds = YES;
+    [self addSubview:_listImageViewRight]
+    
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:_listImageViewRight attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0];
+    
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:_listImageViewRight attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    
     // Initials Label
     _initialsLabel = [[UILabel alloc] init];
     _initialsLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -105,6 +127,8 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     self.avatarItem = nil;
     self.imageView.image = nil;
     self.initialsLabel.text = nil;
+    self.listImageViewLeft = nil;
+    self.listImageViewRight = nil;
     [self.downloadTask cancel];
 }
 
@@ -125,6 +149,13 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
         self.imageView.image = avatarItem.avatarImage;
     } else if (avatarItem.avatarInitials) {
         self.imageView.image = nil;
+    } else if (avatarItem.listOfAvatars) {
+        if (avatarItem.listOfAvatars.length > 2) {
+            self.listImageViewLeft.image = avatarItem.listOfAvatars[0]
+            self.listImageViewLeft.image = avatarItem.listOfAvatars[1]
+        }
+        self.imageView.image = nil;
+        self.initialsLabel = nil;
     }
     
     if (self.imageView.image == nil && avatarItem.avatarInitials) {
@@ -243,6 +274,19 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     
     CGFloat avatarViewDiameter = MIN(CGRectGetWidth(self.imageView.bounds), CGRectGetHeight(self.imageView.bounds));
     self.imageView.layer.cornerRadius = avatarViewDiameter * 0.5;
+    
+    // Right List Image Views
+    self.listImageViewRight = CGRectMake(CGRectGetMinX(self.bounds/2), CGRectGetMinY(self.bounds/2), CGRectGetWidth(self.bounds/2), CGRectGetHeight(self.bounds)/2);
+    
+    CGFloat rightAvatarViewDiameter = MIN(CGRectGetWidth(self.listImageViewRight.bounds), CGRectGetHeight(self.listImageViewRight.bounds));
+    self.listImageViewRight.layer.cornerRadius = rightAvatarViewDiameter * 0.5;
+    
+    //Left List Image Views
+    self.listImageViewLeft = CGRectMake(CGRectGetMinX(self.bounds/2), CGRectGetMinY(self.bounds/2), CGRectGetWidth(self.bounds/2), CGRectGetHeight(self.bounds)/2);
+    
+    CGFloat leftAvatarViewDiameter = MIN(CGRectGetWidth(self.listImageViewLeft.bounds), CGRectGetHeight(self.listImageViewLeft.bounds));
+    self.listImageViewLeft.layer.cornerRadius = leftAvatarViewDiameter * 0.5;
+    
 
     // Initials Label
     self.initialsLabel.frame = CGRectInset(self.bounds, 3, 3);

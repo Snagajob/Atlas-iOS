@@ -44,6 +44,11 @@
 @property (nonatomic, readonly, nullable) NSString *avatarInitials;
 
 /**
+ @abstract Returns the avatars, of multiple users
+ */
+@property (nonatomic, readonly, nulladble) [ATLAvatarItem] *listOfAvatars;
+
+/**
  @abstract Returns the presence status information.
  */
 @property (nonatomic, readonly, assign) LYRIdentityPresenceStatus presenceStatus;
