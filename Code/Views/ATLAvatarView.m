@@ -83,7 +83,7 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     _listImageViewLeft = [[UIImageView alloc] init];
     _listImageViewLeft = ATLLightGrayColor();
     _listImageViewLeft.clipsToBounds = YES;
-    [self addSubview:_listImageViewLeft]
+    [self addSubview:_listImageViewLeft];
     
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:_listImageViewLeft attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0];
     
@@ -95,7 +95,7 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     _listImageViewRight = [[UIImageView alloc] init];
     _listImageViewRight = ATLLightGrayColor();
     _listImageViewRight.clipsToBounds = YES;
-    [self addSubview:_listImageViewRight]
+    [self addSubview:_listImageViewRight];
     
     NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:_listImageViewRight attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0];
     
@@ -151,8 +151,8 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
         self.imageView.image = nil;
     } else if (avatarItem.listOfAvatars) {
         if (avatarItem.listOfAvatars.length > 2) {
-            self.listImageViewLeft.image = avatarItem.listOfAvatars[0]
-            self.listImageViewLeft.image = avatarItem.listOfAvatars[1]
+            self.listImageViewLeft.image = avatarItem.listOfAvatars[0];
+            self.listImageViewLeft.image = avatarItem.listOfAvatars[1];
         }
         self.imageView.image = nil;
         self.initialsLabel = nil;
