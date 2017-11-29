@@ -81,25 +81,48 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     
     //Left ImageView
     _listImageViewLeft = [[UIImageView alloc] init];
-    _listImageViewLeft = ATLLightGrayColor();
+    _listImageViewLeft.backgroundColor = ATLLightGrayColor();
     _listImageViewLeft.clipsToBounds = YES;
     [self addSubview:_listImageViewLeft];
     
-    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:_listImageViewLeft attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem: _listImageViewLeft
+                                                            attribute:NSLayoutAttributeLeft
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem: self
+                                                            attribute:NSLayoutAttributeLeft
+                                                           multiplier:1 constant:0];
     
-    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:_listImageViewLeft attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem: _listImageViewLeft
+                                                           attribute: NSLayoutAttributeTop
+                                                           relatedBy: NSLayoutRelationEqual
+                                                              toItem: self
+                                                           attribute: NSLayoutAttributeTop
+                                                          multiplier: 1 constant: 0];
     
-    [self.view addConstraints:@[left, top]];
+    [self addConstraints:@[left, top]];
     
     //Right ImageView
     _listImageViewRight = [[UIImageView alloc] init];
-    _listImageViewRight = ATLLightGrayColor();
+    _listImageViewRight.backgroundColor = ATLLightGrayColor();
     _listImageViewRight.clipsToBounds = YES;
     [self addSubview:_listImageViewRight];
     
-    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:_listImageViewRight attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem: _listImageViewRight
+                                                             attribute: NSLayoutAttributeRight
+                                                             relatedBy: NSLayoutRelationEqual
+                                                                toItem: self
+                                                             attribute: NSLayoutAttributeRight
+                                                            multiplier: 1
+                                                              constant: 0];
     
-    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:_listImageViewRight attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem: _listImageViewRight
+                                                              attribute: NSLayoutAttributeBottom
+                                                              relatedBy: NSLayoutRelationEqual
+                                                                 toItem: self
+                                                              attribute: NSLayoutAttributeBottom
+                                                             multiplier: 1
+                                                               constant: 0];
+    [self addConstraints:@[right, bottom]];
     
     // Initials Label
     _initialsLabel = [[UILabel alloc] init];
@@ -127,8 +150,8 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     self.avatarItem = nil;
     self.imageView.image = nil;
     self.initialsLabel.text = nil;
-    self.listImageViewLeft = nil;
-    self.listImageViewRight = nil;
+    self.listImageViewLeft.image = nil;
+    self.listImageViewRight.image = nil;
     [self.downloadTask cancel];
 }
 
@@ -150,7 +173,7 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     } else if (avatarItem.avatarInitials) {
         self.imageView.image = nil;
     } else if (avatarItem.listOfAvatars) {
-        if (avatarItem.listOfAvatars.length > 2) {
+        if (avatarItem.listOfAvatars.count > 2) {
             self.listImageViewLeft.image = avatarItem.listOfAvatars[0];
             self.listImageViewLeft.image = avatarItem.listOfAvatars[1];
         }
@@ -276,13 +299,19 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     self.imageView.layer.cornerRadius = avatarViewDiameter * 0.5;
     
     // Right List Image Views
-    self.listImageViewRight = CGRectMake(CGRectGetMinX(self.bounds/2), CGRectGetMinY(self.bounds/2), CGRectGetWidth(self.bounds/2), CGRectGetHeight(self.bounds)/2);
+    self.listImageViewRight.frame = CGRectMake((CGRectGetMinX(self.bounds)/ 2.0),
+                                               (CGRectGetMinY(self.bounds) / 2.0),
+                                               (CGRectGetWidth(self.bounds) / 2.0),
+                                               (CGRectGetHeight(self.bounds) / 2.0));
     
     CGFloat rightAvatarViewDiameter = MIN(CGRectGetWidth(self.listImageViewRight.bounds), CGRectGetHeight(self.listImageViewRight.bounds));
     self.listImageViewRight.layer.cornerRadius = rightAvatarViewDiameter * 0.5;
     
     //Left List Image Views
-    self.listImageViewLeft = CGRectMake(CGRectGetMinX(self.bounds/2), CGRectGetMinY(self.bounds/2), CGRectGetWidth(self.bounds/2), CGRectGetHeight(self.bounds)/2);
+    self.listImageViewLeft.frame = CGRectMake((CGRectGetMinX(self.bounds)/ 2.0),
+                                              (CGRectGetMinY(self.bounds) / 2.0),
+                                              (CGRectGetWidth(self.bounds) / 2.0),
+                                              (CGRectGetHeight(self.bounds) / 2.0));
     
     CGFloat leftAvatarViewDiameter = MIN(CGRectGetWidth(self.listImageViewLeft.bounds), CGRectGetHeight(self.listImageViewLeft.bounds));
     self.listImageViewLeft.layer.cornerRadius = leftAvatarViewDiameter * 0.5;

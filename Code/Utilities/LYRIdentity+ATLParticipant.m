@@ -19,8 +19,16 @@
 //
 
 #import "LYRIdentity+ATLParticipant.h"
+#import "ATLAvatarItem.h"
 
 @implementation LYRIdentity (ATLParticipant)
+
+
+- (NSArray<ATLAvatarItem> *)listOfAvatars {
+    NSMutableArray<ATLAvatarItem> *retVal = [NSMutableArray<ATLAvatarItem> new];
+    return retVal;
+}
+
 
 - (NSString *)avatarInitials
 {

@@ -46,7 +46,7 @@
 /**
  @abstract Returns the avatars, of multiple users
  */
-@property (nonatomic, readonly, nulladble) [ATLAvatarItem] *listOfAvatars;
+@property (nonatomic, readonly, nullable) NSArray<ATLAvatarItem> *listOfAvatars;
 
 /**
  @abstract Returns the presence status information.
