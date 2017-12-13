@@ -27,6 +27,7 @@
 @property (nonatomic) ATLPresenceStatusView *presenceStatusView;
 @property (nonatomic) NSURLSessionDownloadTask *downloadTask;
 @property (nonatomic) NSURL *remoteImageURL;
+@property (nonatomic) BOOL shouldRound;
 
 @end
 
@@ -69,6 +70,7 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     _initialsFont = [UIFont systemFontOfSize:14];
     _initialsColor = [UIColor blackColor];
     _avatarImageViewDiameter = 30;
+    _shouldRound = YES;
 
     self.contentMode = UIViewContentModeScaleAspectFill;
     self.accessibilityLabel = ATLAvatarViewAccessibilityLabel;
@@ -116,6 +118,7 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
 - (void)setAvatarItem:(id<ATLAvatarItem>)avatarItem
 {
     self.imageView.image = nil;
+    _shouldRound = [avatarItem shouldApplyRounding];
     
     if ([avatarItem avatarImageURL]) {
         self.initialsLabel.text = nil;
@@ -242,7 +245,9 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     self.imageView.frame = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds), CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
     
     CGFloat avatarViewDiameter = MIN(CGRectGetWidth(self.imageView.bounds), CGRectGetHeight(self.imageView.bounds));
-    self.imageView.layer.cornerRadius = avatarViewDiameter * 0.5;
+    if (self.shouldRound) {
+        self.imageView.layer.cornerRadius = avatarViewDiameter * 0.5;
+    }
 
     // Initials Label
     self.initialsLabel.frame = CGRectInset(self.bounds, 3, 3);

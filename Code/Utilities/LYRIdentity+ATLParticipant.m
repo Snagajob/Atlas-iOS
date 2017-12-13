@@ -39,4 +39,9 @@
     return nil;
 }
 
+- (BOOL)shouldApplyRounding
+{
+    return YES;
+}
+
 @end
