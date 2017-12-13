@@ -118,7 +118,9 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
 - (void)setAvatarItem:(id<ATLAvatarItem>)avatarItem
 {
     self.imageView.image = nil;
-    _shouldRound = [avatarItem shouldApplyRounding];
+    if (avatarItem) {
+        _shouldRound = [avatarItem shouldApplyRounding];
+    }
     
     if ([avatarItem avatarImageURL]) {
         self.initialsLabel.text = nil;
