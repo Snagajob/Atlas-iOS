@@ -242,7 +242,9 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     self.imageView.frame = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds), CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
     
     CGFloat avatarViewDiameter = MIN(CGRectGetWidth(self.imageView.bounds), CGRectGetHeight(self.imageView.bounds));
-    self.imageView.layer.cornerRadius = avatarViewDiameter * 0.5;
+    if (self.avatarItem != nil && self.avatarItem.shouldApplyRounding) {
+        self.imageView.layer.cornerRadius = avatarViewDiameter * 0.5;
+    }
 
     // Initials Label
     self.initialsLabel.frame = CGRectInset(self.bounds, 3, 3);

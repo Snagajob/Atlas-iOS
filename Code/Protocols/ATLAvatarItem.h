@@ -48,4 +48,9 @@
  */
 @property (nonatomic, readonly, assign) LYRIdentityPresenceStatus presenceStatus;
 
+/**
+ @abstract When YES, the avatar item will be rounded when displayed.
+ */
+@property (nonatomic, readonly) BOOL shouldApplyRounding;
+
 @end
