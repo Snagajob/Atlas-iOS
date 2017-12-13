@@ -118,6 +118,9 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
 - (void)setAvatarItem:(id<ATLAvatarItem>)avatarItem
 {
     self.imageView.image = nil;
+    NSLog(@"CML:: [setAvatarItem: %@] → %@ apply rounding.",
+          NSStringFromClass([avatarItem class]),
+          [avatarItem shouldApplyRounding] ? @"DO" : @"DO NOT");
     _shouldRound = [avatarItem shouldApplyRounding];
     
     if ([avatarItem avatarImageURL]) {
