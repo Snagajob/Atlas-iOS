@@ -120,7 +120,15 @@ NSString *const ATLAvatarViewAccessibilityLabel = @"ATLAvatarViewAccessibilityLa
     self.imageView.image = nil;
     NSLog(@"CML:: avatarItem %@ rounding.",
           _shouldRound ? @"wasn't" : @"was");
-    _shouldRound = avatarItem != nil && [avatarItem shouldApplyRounding];
+    if (avatarItem) {
+        NSLog(@"CML:: Applying %@rounding for %@.",
+              [avatarItem shouldApplyRounding] ? @"" : @"no ",
+              NSStringFromClass([avatarItem class]));
+        _shouldRound = [avatarItem shouldApplyRounding];
+    } else {
+        NSLog(@"Skipping nil avatarItem");
+    }
+    
     NSLog(@"CML:: avatarItem %@ round.",
           _shouldRound ? @"WILL" : @"will NOT");
     
